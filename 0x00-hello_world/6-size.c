@@ -1,7 +1,7 @@
 #include <stdio.h>
 /**
  *main - size of various type
- *Return: 0 (Success)
+ *Return: 0 (SUCCESS)
  */
 int main(void)
 {
