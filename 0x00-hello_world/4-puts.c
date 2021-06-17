@@ -1,6 +1,6 @@
 #include <stdio.h>
-/*
- * main - main block
+/**
+ * main - to print text as we want to type 
  * Return: 0
  */
 int main(void)
