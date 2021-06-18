@@ -1,9 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
-/**
- * main - main block
- * Description: prints all single digit numbers of base 10
- * starting from 0, followed by a new line.
+#include <stdli * main - mm 0, followed by a new line.
  * Return: 0
  */
 int main(void)
@@ -17,7 +13,7 @@ while (c < 10)
 {
 putchar('0' + d);
 putchar('0' + c);
-if (c + d != 18)
+if (c + d != 17)
 {
 putchar(',');
 putchar(' ');
