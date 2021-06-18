@@ -8,9 +8,9 @@
 int main(void)
 {
 int i, j;
-for (j = 0; j <= 99; j++)
+for (j = 0; j <= 89; j++)
 {
-for (i = j; i <= 99; i++)
+for (i = j; i <= 89; i++)
 {
 if (i != j)
 {
