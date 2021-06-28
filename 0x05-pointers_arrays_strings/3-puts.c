@@ -1,4 +1,5 @@
 #include "holberton.h"
+#include <stdio.h>
 /**
  * _strlen - function to print to print a string
  * @s: string parameter
