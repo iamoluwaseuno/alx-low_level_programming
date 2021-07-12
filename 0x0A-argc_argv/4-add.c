@@ -28,5 +28,5 @@ return (1);
 sum += atoi(argv[i]);
 }
 printf("%d\n", sum);
-eturn (0);
+return (0);
 }
