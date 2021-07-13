@@ -86,16 +86,6 @@ int endIndex(char *s, int index)
  */
 int countWords(char *s)
 {
-<<<<<<< HEAD
-words[b][c] = *found_word;
-found_word++;
-c++;
-}
-words[b][c] = '\0';
-b++;
-c = 0;
-leng
-=======
 	int wordOn = 0;
 	int words = 0;
 
@@ -112,4 +102,3 @@ leng
 	}
 	return (words);
 }
->>>>>>> 4b53b40310f0bbac0501d95968458c43ec549394
