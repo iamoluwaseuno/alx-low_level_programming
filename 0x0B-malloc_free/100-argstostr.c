@@ -1,65 +1,46 @@
-#include <stdio.h>
-#include "holberton.h"
-
+#include <stdlib.h>
+#include "stdio.h"
 /**
- * _strlen - length of a string
- * @s: input char
- * Return: length of a string
- */
-
-int _strlen(char *s)
-{
-	int l = 0;
-
-	while (*s != '\0')
-	{
-		s++;
-		l++;
-	}
-	return (l);
-}
-
-/**
- * argstostr - concat
- * @ac: count
- * @av: vector
- * Return: string
+ * argstostr - concatenates all the arguments of your program
+ * @ac: argument count
+ * @av: argument vector
+ *
+ * Return: char
  */
 
 char *argstostr(int ac, char **av)
 {
-	int i, j, k;
-	int len, R = 0;
-	char *p;
+	char *ar, *str;
+	int i, j, cont;
 
-	if (!ac || !av)
-	{
+	if (ac == 0 || av == NULL)
 		return (NULL);
-	}
-	R = 0;
-
 	for (i = 0; i < ac; i++)
 	{
-		len = _strlen(av[i]) + 1;
-		R += len;
-	}
-	p = malloc(sizeof(char) * R + 1);
-
-	if (!p)
-	{
-		return (NULL);
-	}
-
-	for (i = 0; i < ac; i++)
-	{
-		len = _strlen(av[i]);
-
-		for (j = 0; j < len; j++, k++)
+		j = 0;
+		while (av[i][j] != '\0')
 		{
-			p[k] = av[i][j];
+			j++;
+			cont++;
 		}
-		p[k++] = '\n';
+		cont++;
 	}
-	p[k] = '\0';
-	return (p);
+	cont += 1;
+	ar = malloc(cont * sizeof(char));
+	if (ar == NULL)
+		return (NULL);
+	str = ar;
+	for (i = 0; i < ac; i++)
+	{
+		j = 0;
+		while (av[i][j] != '\0')
+		{
+			*ar = av[i][j];
+			j++;
+			ar++;
+		}
+		*ar = '\n';
+		ar++;
+	}
+	return (str);
 }
