@@ -1,5 +1,4 @@
 #include "holberton.h"
-
 /**
  * strtow - splits a string into words
  * @str: string of words to be split
@@ -7,7 +6,7 @@
  */
 char **strtow(char *str)
 {
-	char **ptr;
+char **ptr;
 	int i, k, len, start, end, j = 0;
 	int words =  countWords(str);
 
