@@ -1,76 +1,92 @@
 #include "holberton.h"
-#include <stdio.h>
-#include <stdlib.h>
+
 /**
- * number - function to calculate number of words
- * @str: string being passed to check for words
- *
- * Return: number of words
- */
-int number(char *str)
-{
-int a, num = 0;
-for (a = 0; str[a] != '\0'; a++)
-{
-if (*str == ' ')
-str++;
-else
-{
-for (; str[a] != ' ' && str[a] != '\0'; a++)
-str++;
-num++;
-}
-}
-return (num);
-}
-/**
- * free_everything - frees the memory
- * @string: pointer values being passed for freeing
- * @i: counter
- */
-void free_everything(char **string, int i)
-{
-for (; i > 0;)
-free(string[--i]);
-free(string);
-}
-/**
- * strtow - function that splits string into words
- * @str: string being passed
- * Return: null if string is empty or null or function fails
+ * strtow - splits a string into words
+ * @str: string of words to be split
+ * Return: double pointer to strings
  */
 char **strtow(char *str)
 {
-int total_words = 0, b = 0, c = 0, length = 0;
-char **words, *found_word;
-if (str == 0 || *str == 0)
-return (NULL);
-total_words = number(str);
-if (total_words == 0)
-return (NULL);
-words = malloc((total_words + 1) * sizeof(char *));
-if (words == 0)
-return (NULL);
-for (; *str != '\0' &&  b < total_words;)
-{
-if (*str == ' ')
-str++;
-else
-{
-found_word = str;
-for (; *str != ' ' && *str != '\0';)
-{
-length++;
-str++;
+	char **ptr;
+	int i, k, len, start, end, j = 0;
+	int words =  countWords(str);
+
+	if (!str || !countWords(str))
+		return (NULL);
+	ptr = malloc(sizeof(char *) * (words + 1));
+	if (!ptr)
+		return (NULL);
+	for (i = 0; i < words; i++)
+	{
+		start = startIndex(str, j);
+		end = endIndex(str, start);
+		len = end - start;
+		ptr[i] = malloc(sizeof(char) * (len + 1));
+		if (!ptr[i])
+		{
+			i -= 1;
+			while (i >= 0)
+			{
+				free(ptr[i]);
+					i--;
+			}
+			free(ptr);
+			return (NULL);
+		}
+		for (k = 0; k < len; k++)
+			ptr[i][k] = str[start++];
+		ptr[i][k++] = '\0';
+		j = end + 1;
+	}
+	ptr[i] = NULL;
+	return (ptr);
 }
-words[b] = malloc((length + 1) * sizeof(char));
-if (words[b] == 0)
+
+/**
+ * isSpace - determines if character is a space or not
+ * @c: input char
+ * Return: 1 if true or 0 or not
+ */
+int isSpace(char c)
 {
-free_everything(words, b);
-return (NULL);
+	return (c == ' ');
 }
-while (*found_word != ' ' && *found_word != '\0')
+
+/**
+ * startindex - returns first index of non-space char
+ * @s: input string
+ * @index: starting index
+ * Return: index of first non-space char
+ */
+int startIndex(char *s, int index)
 {
+
+	while (isSpace(*(s + index)))
+		index++;
+	return (index);
+}
+
+/**
+ * endIndex - returns last index of non-space char
+ * @s: input string
+ * @index: starting index
+ * Return: index of last index of non-space char
+ */
+int endIndex(char *s, int index)
+{
+	while (!isSpace(*(s + index)))
+		index++;
+	return (index);
+}
+
+/**
+ * countWords - counts numbers of words in string
+ * @s: input string
+ * Return: number of words
+ */
+int countWords(char *s)
+{
+<<<<<<< HEAD
 words[b][c] = *found_word;
 found_word++;
 c++;
@@ -79,3 +95,21 @@ words[b][c] = '\0';
 b++;
 c = 0;
 leng
+=======
+	int wordOn = 0;
+	int words = 0;
+
+	while (*s)
+	{
+		if (isSpace(*s) && wordOn)
+			wordOn = 0;
+		else if (!isSpace(*s) && !wordOn)
+		{
+			wordOn = 1;
+			words++;
+		}
+		s++;
+	}
+	return (words);
+}
+>>>>>>> 4b53b40310f0bbac0501d95968458c43ec549394

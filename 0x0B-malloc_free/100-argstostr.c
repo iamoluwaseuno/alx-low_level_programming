@@ -1,73 +1,53 @@
-#include <stdlib.h>
+#include <stdio.h>
+#include "holberton.h"
+
 /**
- * strtow - char
- * @str: pointer to string params
- * Return: char
+ * _strlen - returns the length of a string
+ * @s: string s
+ * Return: length of string
  */
-char **strtow(char *str)
+int _strlen(char *s)
 {
-int i = 0, j = 0, k = 0;
-int len = 0, count = 0;
-char **f, *col;
-if (!str || !*str)
-{
-return (NULL);
+	int len = 0;
+
+	while (*s++)
+		len++;
+
+	return (len);
 }
-while (*(str + i))
+
+/**
+ * argstostr - concatenates all the arguments of your program
+ * @ac: argument count
+ * @av: argument vector
+ * Return: concatenated string
+ */
+char *argstostr(int ac, char **av)
 {
-if (*(str + i) != ' ')
-{
-if (*(str + i + 1) == ' ' || *(str + i + 1) == 0)
-{
-count += 1;
+	int i, j, len, total;
+	int m = 0;
+	char *ptr;
+
+	if (!ac || !av)
+		return (NULL);
+	total = 0;
+	for (i = 0; i < ac; i++)
+	{
+		len = _strlen(av[i]) + 1;
+		total += len;
+	}
+	ptr = malloc(sizeof(char) * total + 1);
+	if (!ptr)
+		return (NULL);
+	for (i = 0; i < ac; i++)
+	{
+		len = _strlen(av[i]);
+		for (j = 0; j < len; j++, m++)
+		{
+			ptr[m] = av[i][j];
+		}
+		ptr[m++] = '\n';
+	}
+	ptr[m] = '\0';
+	return (ptr);
 }
-}
-i++;
-}
-if (count == 0)
-{
-return (NULL);
-}
-count += 1;
-f = malloc(sizeof(char *) * count);
-if (!f)
-{
-return (NULL);
-}
-i = 0;
-while (*str)
-{
-while (*str == ' ' && *str)
-{
-str++;
-}
-len = 0;
-while (*(str + len) != ' ' && *(str + len))
-{
-len += 1;
-}
-len += 1;
-col = malloc(sizeof(char) * len);
-if (!col)
-{
-for (k = j - 1; k >= 0; k--)
-{
-free(f[k]);
-}
-free(f);
-return (NULL);
-}
-for (k = 0; k < (len - 1);  k++)
-{
-*(col + k) = *(str++);
-}
-*(col + k) = '\0';
-*(f + j) = col;
-if (j < (count - 1))
-{
-j++;
-}
-}
-*(f + j) = NULL;
-return (f);
-} /*yes*/
