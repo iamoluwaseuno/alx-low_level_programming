@@ -1,73 +1,35 @@
+#include "holberton.h"
 #include <stdlib.h>
 /**
- * strtow - char
- * @str: pointer to string params
- * Return: char
+ * argstostr - concatenates all the arguments of your program
+ *
+ * @ac: argument count
+ * @av: argument vector
+ * Return: pointer str
  */
-char **strtow(char *str)
+char *argstostr(int ac, char **av)
 {
-int i = 0, j = 0, k = 0;
-int len = 0, count = 0;
-char **f, *col;
-if (!str || !*str)
-{
+int i, j, k = 0;
+unsigned int sum = 0;
+char *str;
+if (ac == 0 || av == NULL)
 return (NULL);
-}
-while (*(str + i))
-{
-if (*(str + i) != ' ')
-{
-if (*(str + i + 1) == ' ' || *(str + i + 1) == 0)
-{
-count += 1;
-}
-}
-i++;
-}
-if (count == 0)
-{
+for (i = 0; i < ac; i++)
+for (j = 0; av[i][j] != '\0'; j++)
+sum++;
+sum += i * 2;
+str = malloc(sizeof(char) * sum);
+if (str == NULL)
 return (NULL);
-}
-count += 1;
-f = malloc(sizeof(char *) * count);
-if (!f)
+for (i = 0; i < ac; i++)
 {
-return (NULL);
-}
-i = 0;
-while (*str)
+for (j = 0; av[i][j] != '\0'; j++)
 {
-while (*str == ' ' && *str)
-{
-str++;
+str[k] = av[i][j];
+k++;
 }
-len = 0;
-while (*(str + len) != ' ' && *(str + len))
-{
-len += 1;
+str[k] = '\n';
+k++;
 }
-len += 1;
-col = malloc(sizeof(char) * len);
-if (!col)
-{
-for (k = j - 1; k >= 0; k--)
-{
-free(f[k]);
+return (str);
 }
-free(f);
-return (NULL);
-}
-for (k = 0; k < (len - 1);  k++)
-{
-*(col + k) = *(str++);
-}
-*(col + k) = '\0';
-*(f + j) = col;
-if (j < (count - 1))
-{
-j++;
-}
-}
-*(f + j) = NULL;
-return (f);
-} /*yes*/
