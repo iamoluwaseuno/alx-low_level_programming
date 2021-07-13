@@ -2,52 +2,64 @@
 #include "holberton.h"
 
 /**
- * _strlen - returns the length of a string
- * @s: string s
- * Return: length of string
+ * _strlen - length of a string
+ * @s: input char
+ * Return: length of a string
  */
+
 int _strlen(char *s)
 {
-	int len = 0;
+	int l = 0;
 
-	while (*s++)
-		len++;
-
-	return (len);
+	while (*s != '\0')
+	{
+		s++;
+		l++;
+	}
+	return (l);
 }
 
 /**
- * argstostr - concatenates all the arguments of your program
- * @ac: argument count
- * @av: argument vector
- * Return: concatenated string
+ * argstostr - concat
+ * @ac: count
+ * @av: vector
+ * Return: string
  */
+
 char *argstostr(int ac, char **av)
 {
-	int i, j, len, total;
-	int m = 0;
-	char *ptr;
+	int i, j, k;
+	int len, R = 0;
+	char *p;
 
 	if (!ac || !av)
+	{
 		return (NULL);
-	total = 0;
+	}
+	R = 0;
+
 	for (i = 0; i < ac; i++)
 	{
 		len = _strlen(av[i]) + 1;
-		total += len;
+		R += len;
 	}
-	ptr = malloc(sizeof(char) * total + 1);
-	if (!ptr)
+	p = malloc(sizeof(char) * R + 1);
+
+	if (!p)
+	{
 		return (NULL);
+	}
+
 	for (i = 0; i < ac; i++)
 	{
 		len = _strlen(av[i]);
-		for (j = 0; j < len; j++, m++)
+
+		for (j = 0; j < len; j++, k++)
 		{
-			ptr[m] = av[i][j];
+			p[k] = av[i][j];
 		}
-		ptr[m++] = '\n';
+		p[k++] = '\n';
 	}
-	ptr[m] = '\0';
-	return (ptr);
+	p[k] = '\0';
+	return (p);
 }
