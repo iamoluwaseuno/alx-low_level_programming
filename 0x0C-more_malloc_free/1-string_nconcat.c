@@ -1,6 +1,5 @@
 #include "holberton.h"
 #include <stdlib.h>
-
 /**
  * string_nconcat - concatenates two strings.
  * @s1: first string to copy
@@ -11,15 +10,14 @@
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int i, j, k;
-	char *s;
-
-	if (s1 == NULL)
-		i = 0;
-	else
-	{
-		for (i = 0; s1[i]; i++)
-			;
+unsigned int i, j, k;
+char *s;
+if (s1 == NULL)
+i = 0;
+else
+{
+for (i = 0; s1[i]; i++)
+	;
 	}
 	if (s2 == NULL)
 		j = 0;
