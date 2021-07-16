@@ -116,3 +116,4 @@ if (!ptr)
 return (NULL);
 _memset(ptr, 0, size * nmemb);
 return (ptr);
+}
